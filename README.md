@@ -97,4 +97,5 @@ Any tsconfig.json can be used, but if you do, set the environment variable `TS_N
 ### Endpoints
 GET Products list - https://a2gdy4u7n5.execute-api.eu-central-1.amazonaws.com/dev/products
 GET Product by Id - https://a2gdy4u7n5.execute-api.eu-central-1.amazonaws.com/dev/products/{id}
+### Task 5
 POST Product - 
