@@ -1,6 +1,6 @@
 import {errorJSONResponse, ValidatedEventAPIGatewayProxyEvent} from '@libs/api-gateway';
 import {successJSONResponse} from '@libs/api-gateway';
-import {middyfy} from '@libs/lambda';
+// import {middyfy} from '@libs/lambda';
 import {v4 as uuidv4} from 'uuid';
 import {PutCommand} from "@aws-sdk/lib-dynamodb";
 import {dynamoDB} from "../../dynamodb";
@@ -8,7 +8,7 @@ import {CreateProductBodySchema} from "../../schemas/createProduct.schema";
 import {AvailableProduct} from "../../models/product";
 
 
-const createNewProduct: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = async (event) => {
+export const createProduct: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = async (event) => {
     const {error, value} = CreateProductBodySchema.validate(event.body)
 
     if (error) {
@@ -39,4 +39,4 @@ const createNewProduct: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = a
 
 };
 
-export const createProduct = middyfy(createNewProduct);
+// export const createProduct = middyfy(createNewProduct);

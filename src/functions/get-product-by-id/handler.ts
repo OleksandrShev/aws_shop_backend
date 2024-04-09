@@ -1,10 +1,10 @@
 import {errorJSONResponse, successJSONResponse, ValidatedEventAPIGatewayProxyEvent} from '@libs/api-gateway';
-import {middyfy} from '@libs/lambda';
+// import {middyfy} from '@libs/lambda';
 import {GetCommand} from "@aws-sdk/lib-dynamodb";
 import {AvailableProduct} from "../../models/product";
 import {dynamoDB} from "../../dynamodb";
 
-const getProduct: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = async (event) => {
+export const getProductById: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = async (event) => {
     const getProductCommand = new GetCommand({
         TableName: process.env.PRODUCTS_TABLE,
         Key: {
@@ -29,4 +29,4 @@ const getProduct: ValidatedEventAPIGatewayProxyEvent<AvailableProduct> = async (
     return successJSONResponse({...product, ...stock});
 };
 
-export const getProductById = middyfy(getProduct);
+// export const getProductById = middyfy(getProduct);

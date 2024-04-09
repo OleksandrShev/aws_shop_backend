@@ -2,8 +2,8 @@ import {errorJSONResponse, successJSONResponse, ValidatedEventAPIGatewayProxyEve
 import products from "../../mocks/products.json"
 import {PutCommand} from "@aws-sdk/lib-dynamodb";
 import {dynamoDB} from "../../dynamodb";
-import {middyfy} from "@libs/lambda";
-const fillTablesFunc: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
+// import {middyfy} from "@libs/lambda";
+export const fillTables: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
     try {
         for (const product of products) {
             const putProductCommand = new PutCommand({
@@ -27,4 +27,4 @@ const fillTablesFunc: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
     }
 };
 
-export const fillTables = middyfy(fillTablesFunc);
+// export const fillTables = middyfy(fillTablesFunc);

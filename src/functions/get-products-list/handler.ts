@@ -1,11 +1,11 @@
 import type {ValidatedEventAPIGatewayProxyEvent} from '@libs/api-gateway';
 import {successJSONResponse} from '@libs/api-gateway';
-import {middyfy} from '@libs/lambda';
+// import {middyfy} from '@libs/lambda';
 import {GetCommand, ScanCommand} from "@aws-sdk/lib-dynamodb";
 import {dynamoDB} from "../../dynamodb";
 import {AvailableProduct, Product} from "../../models/product";
 
-const getProducts: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
+export const getProductsList: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
     const getCommand = new ScanCommand({
         TableName: process.env.PRODUCTS_TABLE,
         ConsistentRead: true,
@@ -25,4 +25,4 @@ const getProducts: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
     return successJSONResponse(products);
 };
 
-export const getProductsList = middyfy(getProducts);
+// export const getProductsList = middyfy(getProducts);
