@@ -7,11 +7,11 @@ export const fillTables: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
     try {
         for (const product of products) {
             const putProductCommand = new PutCommand({
-                TableName: process.env.PRODUCTS_TABLE,
+                TableName: 'products',
                 Item: product,
             });
             const putStockCommand = new PutCommand({
-                TableName: process.env.STOCK_TABLE,
+                TableName: 'stock',
                 Item: {
                     id: product.id,
                     count: Math.floor(Math.random() * 20) + 1,
