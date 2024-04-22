@@ -22,9 +22,45 @@ const serverlessConfiguration: AWS = {
       REGION: process.env.REGION,
       PATH: process.env.PATH
     },
+    iam: {
+      role: {
+        statements: [
+          {
+            Effect: 'Allow',
+            Action: [
+              's3:*',
+              's3-object-lambda:*'
+            ],
+            Resource: 'arn:aws:s3:::my-bucket-alex-epam/*',
+          }
+        ]
+      }
+    }
   },
   // import the function via paths
   functions: { hello, importFileParser, importProductsFile },
+  resources: {
+    Resources: {
+      ImportS3Bucket: {
+        Type: 'AWS::S3::Bucket',
+        Properties: {
+          BucketName: 'my-bucket-alex-epam',
+          VersioningConfiguration: {
+            Status: 'Enabled'
+          },
+          CorsConfiguration: {
+            CorsRules: [
+              {
+                AllowedOrigins: ["*"],
+                AllowedHeaders: ["*"],
+                AllowedMethods: ["GET", "PUT", "HEAD"],
+              },
+            ],
+          }
+        },
+      },
+    }
+  },
   package: { individually: true },
   custom: {
     esbuild: {
