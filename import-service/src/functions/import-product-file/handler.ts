@@ -9,7 +9,7 @@ export const importProductsFile: ValidatedEventAPIGatewayProxyEvent<null> = asyn
         const client = new S3Client({region: 'eu-central-1'});
         const fileName = event?.queryStringParameters?.name;
 
-        const commandParams = {Bucket: process.env.S3_BUCKET_NAME, Key: `uploaded/${fileName}`}
+        const commandParams = {Bucket: 'my-bucket-alex-epam', Key: `uploaded/${fileName}`}
 
         const command = new PutObjectCommand(commandParams);
 
