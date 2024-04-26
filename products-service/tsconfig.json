@@ -15,7 +15,7 @@
   "include": ["src/**/*.ts", "serverless.ts", "src/schemas/createProduct.schema.ts"],
   "exclude": [
     "node_modules/**/*",
-    ".serverless/**/*",
+    "products-service/.serverless/**/*",
     ".webpack/**/*",
     "_warmup/**/*",
     ".vscode/**/*"
